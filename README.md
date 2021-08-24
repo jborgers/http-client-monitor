@@ -25,6 +25,6 @@ You can see dynamic behavior of the pool usage for the total pool and per route:
 Depending on sleep time of /hello, number of parallel /hello calls (threads), connection pool size (per route) and timeout values, 
 a TimeoutException may be thrown and logged, resulting in not all /hello calls actually being executed.
 
-Note: using a VPN may interfere with local attach by a JMX client to a service.
+Note: using a VPN may interfere with local attach by a JMX client to a service. You may need to switch off your VPN.
 
 (Part of the code is based on Spring's gs-rest-service.)
