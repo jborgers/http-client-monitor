@@ -9,13 +9,13 @@
 		<!--version>2.4.3</version-->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>rest-service-complete</artifactId>
+	<groupId>com.jpinpoint.monitor</groupId>
+	<artifactId>http-client-monitor-greeting-many</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-service-complete</name>
-	<description>Demo project for Spring Boot</description>
+	<name>http-client-monitor-greeting-many</name>
+	<description>Demo of monitoring Http Clients by JMX</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

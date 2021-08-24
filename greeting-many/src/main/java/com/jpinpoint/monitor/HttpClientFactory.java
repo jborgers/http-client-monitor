@@ -51,7 +51,7 @@ public class HttpClientFactory {
         return httpComponentsClientHttpRequestFactory;
     }
 
-    private void logPoolInfo(String label) {
+    public void logPoolInfo(String label) {
         if(log.isInfoEnabled()) {
             StringBuilder logBuilder = new StringBuilder();
             int count = 0;
@@ -70,7 +70,7 @@ public class HttpClientFactory {
             ObjectName objectName = new ObjectName("com.jpinpoint.monitor:name=PoolingHttpClientConnectionManager");
             if (!mbeanServer.isRegistered(objectName)) {
                 mbeanServer.registerMBean(poolStats, objectName);
-                log.debug("registered mbean {}");
+                log.debug("registered mbean {}", objectName.getCanonicalName());
             }
         } catch (JMException ex) {
             log.error("register mbean error", ex);
