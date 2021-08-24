@@ -6,7 +6,7 @@ Http connection pool statistics are exposed through JMX with an MBean, e.g. visi
 You can add more logging by switching to DEBUG level (application.properties.)
 
 We have two services, both have endpoints: /greetingMany and /hello. 
-1. Build with `greeting-many/mvn compile`
+1. Build with `./mvnw compile`
 2. Start service 1 and 2 in two consoles by:
 `./run 8080`
 `./run 8081`
