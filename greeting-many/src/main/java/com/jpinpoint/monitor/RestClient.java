@@ -14,7 +14,7 @@ import java.util.concurrent.*;
 @Slf4j
 public class RestClient {
     public static final String LOG_REQUEST_TO_ENDPOINT = "Request to endpoint: {} failed with code: {} and message {}";
-    public static final String SERVICE_CONNECTION_MSG = "Service connection issue serviceName=%s, exception-message=%s";
+    public static final String SERVICE_CONNECTION_MSG = "Service connection issue after %s ms, serviceName=%s, exception-message=%s";
     private static final String serviceName = "hello service";
     private final HttpClientFactory httpClientFactory = new HttpClientFactory();
     private final RestTemplate restTemplate = httpClientFactory.createRestTemplate();
@@ -38,18 +38,20 @@ public class RestClient {
         String uri = "http://localhost:" + port + "/hello";
         URI uriUrl = createUri(uri);
         ResponseEntity<String> response;
+        long start = System.currentTimeMillis();
 
         try {
             httpClientFactory.logPoolInfo("before Hello service call");
+
             response = restTemplate.exchange(uriUrl, HttpMethod.GET, new HttpEntity<>(null), String.class);
             //assertHttpCallResponseIsValid(response, getUri());
             value = retrieveHttpCallResponse(response);
 
         } catch(ResourceAccessException e) {
-            throw new RuntimeException(String.format(SERVICE_CONNECTION_MSG, serviceName, e.getMessage()), e);
+            throw new RuntimeException(String.format(SERVICE_CONNECTION_MSG, System.currentTimeMillis() - start, serviceName, e.getMessage()), e);
         } catch (HttpClientErrorException | HttpServerErrorException ex) {
             log.debug(LOG_REQUEST_TO_ENDPOINT, uri, ex.getRawStatusCode(), ex.getMessage());
-            throw new RuntimeException(String.format(SERVICE_CONNECTION_MSG, serviceName, ex.getMessage()), ex);
+            throw new RuntimeException(String.format(SERVICE_CONNECTION_MSG, System.currentTimeMillis() - start, serviceName, ex.getMessage()), ex);
         } catch (RestClientException | IllegalArgumentException e) {
             throw new RuntimeException(String.format("The retrieval of a value from the endpoint with uriUrl %s failed.", uriUrl), e);
         }

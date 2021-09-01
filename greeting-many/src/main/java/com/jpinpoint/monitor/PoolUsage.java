@@ -7,9 +7,21 @@ import java.beans.ConstructorProperties;
 
 @Slf4j
 class PoolUsage extends PoolStats {
-    @ConstructorProperties({"leased", "pending", "available", "max"})
-    public PoolUsage(int leased, int pending, int available, int max) {
+    //private final String targetHost;
+
+    @ConstructorProperties({/*"targetHost",*/ "leased", "pending", "available", "max"})
+    public PoolUsage(/*String targetHost,*/ int leased, int pending, int available, int max) {
         super(leased, pending, available, max);
-        //log.debug("ctor PoolUsage " + this);
+        //this.targetHost = targetHost;
+        log.debug("ctor " + this);
     }
+
+//    public String getTargetHost() {
+//        return targetHost;
+//    }
+
+ //   @Override
+//    public String toString() {
+//        return "PoolUsage targetHost='" + targetHost + "': " + super.toString();
+//    }
 }
