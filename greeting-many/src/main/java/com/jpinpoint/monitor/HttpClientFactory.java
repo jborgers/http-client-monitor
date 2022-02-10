@@ -46,9 +46,9 @@ public class HttpClientFactory {
                 .disableConnectionState()
                 .build());*/
 
-//        httpComponentsClientHttpRequestFactory.setReadTimeout(SO_TIMEOUT_MILLISEC);
-//        httpComponentsClientHttpRequestFactory.setConnectTimeout(CONNECTION_TIMEOUT_MILLISEC);
-//        httpComponentsClientHttpRequestFactory.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT_MILLISEC);
+        httpComponentsClientHttpRequestFactory.setReadTimeout(SO_TIMEOUT_MILLISEC_1);
+        httpComponentsClientHttpRequestFactory.setConnectTimeout(CONNECTION_TIMEOUT_MILLISEC);
+        httpComponentsClientHttpRequestFactory.setConnectionRequestTimeout(CONNECTION_REQUEST_TIMEOUT_MILLISEC);
         HttpClient httpClient = createHttpClient();
         registerRequestConfigMBean(httpClient);
         httpComponentsClientHttpRequestFactory.setHttpClient(httpClient);
