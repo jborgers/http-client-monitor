@@ -3,7 +3,7 @@ Demo of monitoring Http Clients (just Apache Http Client for now). MBean and tes
 
 Http connection pool settings and usage statistics; socket and request configuration are exposed through JMX with MBeans, e.g. visible in VisualVM.
 
-Example view in VisualVM:
+Example view in VisualVM:   
 <img alt="img.png" src="img.png" width="400"/>
 
 You can add more logging by switching to DEBUG level (application.properties.)
