@@ -1,7 +1,7 @@
 # Http Client Monitor
 Demo of monitoring Http Clients (just Apache Http Client for now). MBean and test services.
 
-Http connection pool statistics are exposed through JMX with an MBean, e.g. visible in VisualVM.
+Http connection pool settings and usage statistics; socket and request configuration are exposed through JMX with MBeans, e.g. visible in VisualVM.
 
 Example view in VisualVM:
 ![img.png](img.png)
