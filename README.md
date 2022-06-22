@@ -9,16 +9,17 @@ Example view in VisualVM:
 You can add more logging by switching to DEBUG level (application.properties.)
 
 We have two services, both have endpoints: /greetingMany and /hello. 
-1. Build with `./mvnw compile`
-2. Start service 1 and 2 in two consoles by:
+1. `cd greeting-many`
+2. `./mvnw compile`
+3. Start service 1 and 2 in two consoles by:
 `./run 8080`
 `./run 8081`
 
-3. Call `/greetingMany` on service 1 by:
+4. Call `/greetingMany` on service 1 by:
 `curl "localhost:8080/greetingMany?threads=10"`
 where `threads` is the number of rest calls made by `/greetingMany` to `/hello`.
 
-4. Monitor service 1 with e.g. VisualVm MBean browser, under com.jpinpoint.monitor. 
+5. Monitor service 1 with e.g. VisualVm MBean browser, under com.jpinpoint.monitor. 
 You can see dynamic behavior of the pool usage for the total pool and per route: 
 * leased: connections in use
 * pending: connections requests waiting for a connection from the pool

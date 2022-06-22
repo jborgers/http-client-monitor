@@ -87,7 +87,6 @@ public class HttpClientRequestConfig implements HttpClientRequestConfigMXBean {
         return reqConfig.getSocketTimeout();
     }
 
-
     @Override
     public boolean isContentCompressionEnabled() {
         return reqConfig.isContentCompressionEnabled();
@@ -101,5 +100,4 @@ public class HttpClientRequestConfig implements HttpClientRequestConfigMXBean {
     public String toString() {
         return reqConfig.toString();
     }
-
 }
