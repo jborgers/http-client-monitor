@@ -1,4 +1,4 @@
-package com.jpinpoint.monitor;
+package com.jpinpoint.monitor.demo;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -51,7 +51,7 @@ public class GreetingController {
 
 		try {
 				log.info("{} - Hello!", count);
-				Thread.sleep(3000);
+				Thread.sleep(4000);
 		}
 		catch (RuntimeException | InterruptedException e) {
 			log.debug(e.getMessage());

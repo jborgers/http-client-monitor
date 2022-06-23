@@ -2,23 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
+	<!--parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.3</version>
-		<!--version>2.4.3</version-->
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+		<relativePath/>
+	</parent-->
 	<groupId>com.jpinpoint.monitor</groupId>
-	<artifactId>http-client-monitor-greeting-many</artifactId>
+	<artifactId>http-client-monitor-lib</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>http-client-monitor-greeting-many</name>
-	<description>Demo of monitoring Http Clients by JMX</description>
+	<name>http-client-monitor-lib</name>
+	<description>Library of monitoring Http Clients by JMX</description>
 	<properties>
 		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 	<dependencies>
-		<dependency>
+		<!--dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>2.5.3</version>
@@ -34,7 +35,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+		</dependency!-->
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -47,22 +48,29 @@
 			<version>1.18.24</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>5.3.9</version>
+		</dependency-->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.36</version>
 		</dependency>
-
 	</dependencies>
 
-	<build>
+	<!-- <packaging>jar</packaging>  -->
+
+	<!--build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+	</build-->
 
 
 </project>

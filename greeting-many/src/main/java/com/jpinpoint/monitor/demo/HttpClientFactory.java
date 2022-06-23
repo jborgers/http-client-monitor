@@ -1,5 +1,6 @@
-package com.jpinpoint.monitor;
+package com.jpinpoint.monitor.demo;
 
+import com.jpinpoint.monitor.HttpClientMonitorUtil;
 import org.apache.http.HttpHost;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -21,8 +22,8 @@ public class HttpClientFactory {
     private static final int MAX_CONN_PER_ROUTE = 4;
     private static final int DEF_MAX_CONN_PER_ROUTE = 3;
     private static final int CONNECTION_TIMEOUT_MILLISEC = 250;
-    private static final int CONNECTION_REQUEST_TIMEOUT_MILLISEC = 350;
-    private static final int SO_TIMEOUT_MILLISEC_1 = 4000;
+    private static final int CONNECTION_REQUEST_TIMEOUT_MILLISEC = 2000;
+    private static final int SO_TIMEOUT_MILLISEC_1 = 5000;
     private static final int SO_TIMEOUT_MILLISEC_2 = 50;
 
     public RestTemplate createRestTemplate(String serviceName) {

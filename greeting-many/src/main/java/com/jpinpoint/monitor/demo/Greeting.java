@@ -1,4 +1,4 @@
-package com.jpinpoint.monitor;
+package com.jpinpoint.monitor.demo;
 
 import lombok.NonNull;
 

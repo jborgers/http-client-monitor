@@ -1,5 +1,6 @@
-package com.jpinpoint.monitor;
+package com.jpinpoint.monitor.demo;
 
+import com.jpinpoint.monitor.HttpClientMonitorUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -25,7 +26,7 @@ public class RestClient {
         for (int i = 0; i < numThreads - 1; i++) {
             executor.submit(() -> doGet(port));
             try {
-                Thread.sleep(10);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 Thread.currentThread().interrupt();
