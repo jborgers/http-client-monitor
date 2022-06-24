@@ -17,13 +17,12 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-		<!-- change when in maven repo! -->
+
 		<dependency>
 			<groupId>com.jpinpoint.monitor</groupId>
 			<artifactId>http-client-monitor-lib</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../http-client-monitor-lib/target/http-client-monitor-lib-1.0.0-SNAPSHOT.jar</systemPath>
+			<!--scope>compile</scope-->
 		</dependency>
 
 		<dependency>

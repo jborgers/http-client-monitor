@@ -1,0 +1,10 @@
+#!/bin/sh
+echo Installing http-client-monitor-lib-1.0.0-SNAPSHOT.jar in yoour local maven repo
+
+mvn install:install-file \
+   -Dfile=./target/http-client-monitor-lib-1.0.0-SNAPSHOT.jar \
+   -DgroupId=com.jpinpoint.monitor \
+   -DartifactId=http-client-monitor-lib \
+   -Dversion=1.0.0-SNAPSHOT \
+   -Dpackaging=jar \
+   -DgeneratePom=true
