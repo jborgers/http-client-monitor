@@ -1,5 +1,5 @@
 # Http Client Monitor
-Demo of monitoring Http Clients (just Apache Http Client for now). MBean and test services.
+Library and Demo of monitoring Http Clients (just Apache Http Client for now). 
 
 Http connection pool settings and usage statistics; socket and request configuration are exposed through JMX with MBeans, e.g. visible in VisualVM.
 
@@ -8,7 +8,13 @@ Example view in VisualVM:
 
 You can add more logging by switching to DEBUG level (application.properties.)
 
-We have two services, both have endpoints: /greetingMany and /hello. 
+To build and install the 1.0.0-SNAPSHOT library in your local maven repo:
+1. cd `http-client-monitor-lib`
+2. `./mvnw clean package`
+3. `./mvnLocalInstallJar`
+
+The demo has two services, both have endpoints: /greetingMany and /hello.
+To run the demo: 
 1. `cd greeting-many`
 2. `./mvnw compile`
 3. Start service 1 and 2 in two consoles by:
