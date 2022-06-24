@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jpinpoint.monitor;
+package com.jpinpoint.monitor.demo;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -29,20 +29,20 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class GreetingControllerTests {
+class GreetingControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Test
-	public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
+	void noParamGreetingShouldReturnDefaultMessage() throws Exception {
 
 		this.mockMvc.perform(get("/greetingMany")).andDo(print()).andExpect(status().isOk())
 				.andExpect(jsonPath("$.content").value("Called 8 Hello's"));
 	}
 
 	@Test
-	public void helloShouldReturnHello() throws Exception {
+	void helloShouldReturnHello() throws Exception {
 
 		this.mockMvc.perform(get("/hello"))
 				.andDo(print()).andExpect(status().isOk())

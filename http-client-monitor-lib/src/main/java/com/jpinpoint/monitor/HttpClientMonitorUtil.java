@@ -15,10 +15,18 @@ import java.lang.management.ManagementFactory;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Utility class to monitor Apache Http Client connection pooling configuration and behaviour; and request configuration.
+ * This class exposes MXBeans to enable monitoring through JMX, e.g. by the MBeans browser of VisualVM.
+ * It supports multiple services, identified by service name.
+ * For bulk heading, it is recommended that each service/route has its own connection pool.
+ * One useful observation which can be made: When no connections are available from the pool, requests will be throttled
+ * leading to slow responses and timeouts.
+ */
 @Slf4j
 public class HttpClientMonitorUtil {
 
-    private static final Map<String, PoolingHttpClientConnectionManager> serviceNameToConnectionManager = new ConcurrentHashMap<>();
+    private static final Map<String, PoolingHttpClientConnectionManager> serviceNameToConnMgr = new ConcurrentHashMap<>();
 
     private HttpClientMonitorUtil() {
     }
@@ -33,14 +41,14 @@ public class HttpClientMonitorUtil {
     public static void logPoolInfo(@NonNull String serviceName, @NonNull String label) {
         StringBuilder logBuilder = new StringBuilder();
         int count = 0;
-        PoolingHttpClientConnectionManager connectionManager = serviceNameToConnectionManager.get(serviceName);
-        log.debug("service={} - connectionManager={}", serviceName, connectionManager);
-        if (connectionManager!= null) {
-            for (HttpRoute route : connectionManager.getRoutes()) {
+        PoolingHttpClientConnectionManager connMgr = serviceNameToConnMgr.get(serviceName);
+        log.debug("service={} - connectionManager={}", serviceName, connMgr);
+        if (connMgr!= null) {
+            for (HttpRoute route : connMgr.getRoutes()) {
                 logBuilder.append(" ").append(++count).append(": ").append(route).append(" = ")
-                        .append(connectionManager.getStats(route));
+                        .append(connMgr.getStats(route));
             }
-            log.debug("service={} - {}: connectionMgr.getTotalStats = {}, routes: [{}]", serviceName, label, connectionManager.getTotalStats(), logBuilder);
+            log.debug("service={} - {}: connectionManager.getTotalStats = {}, routes: [{}]", serviceName, label, connMgr.getTotalStats(), logBuilder);
         }
         else {
             log.error("No Connection Manager found for service={}", serviceName);
@@ -53,7 +61,7 @@ public class HttpClientMonitorUtil {
      * @param serviceName name of the service to connect to.
      * @param httpClient the httpClient to monitor the RequestConfig settings of.
      */
-    public static void registerRequestConfigMBean(String serviceName, HttpClient httpClient) {
+    public static void registerRequestConfigMBean(@NonNull String serviceName, @NonNull HttpClient httpClient) {
         if (httpClient instanceof Configurable) {
             RequestConfig reqConfig = ((Configurable) httpClient).getConfig();
             log.debug("service={} request config={}", serviceName, reqConfig);
@@ -81,8 +89,8 @@ public class HttpClientMonitorUtil {
      * @param serviceName name of the service to connect to.
      * @param connMgr the PoolingHttpClientConnectionManager to monitor the pool statistics of.
      */
-    public static void registerPoolStatsMBean(String serviceName, PoolingHttpClientConnectionManager connMgr) {
-        storeConnectionManagerForService(serviceName, connMgr);
+    public static void registerPoolStatsMBean(@NonNull String serviceName, @NonNull PoolingHttpClientConnectionManager connMgr) {
+        storeConnMgrForService(serviceName, connMgr);
         PoolingHttpClientConnectionManagerStatsMXBean poolStats = new PoolingHttpClientConnectionManagerStats(connMgr);
         MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
         try {
@@ -96,8 +104,8 @@ public class HttpClientMonitorUtil {
         }
     }
 
-    private static void storeConnectionManagerForService(String serviceName, PoolingHttpClientConnectionManager connectionManager ) {
-        serviceNameToConnectionManager.put(serviceName, connectionManager);
+    private static void storeConnMgrForService(String serviceName, PoolingHttpClientConnectionManager connMgr ) {
+        serviceNameToConnMgr.put(serviceName, connMgr);
     }
 
 }

@@ -45,7 +45,7 @@ public class RestClient {
         try {
             HttpClientMonitorUtil.logPoolInfo(SERVICE_NAME, "before service call");
 
-            response = restTemplate.exchange(uriUrl, HttpMethod.GET, new HttpEntity<>(null), String.class);
+            response = restTemplate.exchange(uriUrl, HttpMethod.GET, new HttpEntity<>(Collections.emptyMap()), String.class);
             value = retrieveHttpCallResponse(response);
 
         } catch(ResourceAccessException e) {

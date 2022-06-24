@@ -6,9 +6,7 @@ import java.util.Map;
 
 public interface PoolingHttpClientConnectionManagerStatsMXBean {
         String getName();
-        //PoolUsage getTotalUsage();
         Map<String, PoolUsage> getUsageForRoutes();
-        //PoolUsage getRoute1Usage();
 
         int getTotalLeased();
         int getTotalPending();
@@ -22,8 +20,6 @@ public interface PoolingHttpClientConnectionManagerStatsMXBean {
         int getRoute1Max();
 
         Map<String, SocketConfig> getSocketConfigForRoutes();
-
-        //SocketConfig getRoute1SocketConfig();
 
         SocketConfig getDefaultSocketConfig();
 }

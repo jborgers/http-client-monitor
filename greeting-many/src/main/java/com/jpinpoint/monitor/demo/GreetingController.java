@@ -53,7 +53,11 @@ public class GreetingController {
 				log.info("{} - Hello!", count);
 				Thread.sleep(4000);
 		}
-		catch (RuntimeException | InterruptedException e) {
+		catch (InterruptedException e) {
+			log.debug(e.getMessage());
+			Thread.currentThread().interrupt();
+		}
+		catch(RuntimeException e) {
 			log.debug(e.getMessage());
 		}
 		return new Greeting(count, "Hello!");
